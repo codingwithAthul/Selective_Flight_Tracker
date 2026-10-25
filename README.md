@@ -1,86 +1,47 @@
-# Cheapest Flight Tracker
+# Selective Flight Tracker
 
-You fix the first and last location, plus any other conditions you like. The
-bot then finds the best and cheapest flights.
+Every day, this bot searches Google Flights for the cheapest flights between two fixed places, across a range of dates. It saves the top 5 options, with both the outbound and return flights, to `Report/`.
 
-Every day it searches a **window of dates** between your **fixed origin and
-destination**, using parallel workers. It applies your filters (stops,
-budget, airlines, duration, times), stores everything in SQLite, and sends
-you a **report sorted by price**, with price-drop and all-time-low alerts.
+## Where to find the reports
 
-```
-config.yaml ──► planner ──► parallel workers ──► filters ──► SQLite ──► insights ──► report ──► Telegram / email / summary
-                (sample→zoom     (per-provider        (your hard        (history)    (trends,
-                 within budget)   rate limits)         constraints)                   alerts)
-```
+`Report/<trip folder>/latest.md` is today's report. Older days are saved as `YYYY-MM-DD.md`.
 
-## What you get each day
+Example: [`Report/T1 Vancouver - Kochi (Round)/latest.md`](Report/T1%20Vancouver%20-%20Kochi%20(Round)/latest.md)
 
-- **Top N options sorted by price.** Each shows dates and nights, airports,
-  airlines, stops and layover cities, total time, departure and arrival
-  times, the change since yesterday, and a booking link.
-- **Alerts** for a new all-time low, a drop of X% since the last run, or
-  your target price being hit.
-- **Cheapest dates** across the window, plus a **30-day price trend** line.
-- A **best value** pick that weighs price against travel time (optional).
+## One-time setup
 
-## Quick start (local, no API keys)
+1. Get a SerpApi key at https://serpapi.com. The free plan gives 250 searches a month.
+2. In GitHub, open **Settings → Secrets and variables → Actions → New repository secret**.
+   Name it `SERPAPI_API_KEY` and paste the key.
 
-```bash
-pip install -r requirements-dev.txt
-cp config.example.yaml config.yaml          # then edit the trip
-python -m flight_tracker plan               # what will be searched and the API cost
-python -m flight_tracker run --provider mock --no-notify
-python -m pytest -q
+The bot then runs every day at 11:30 UTC on its own.
+
+## Change the trip
+
+Edit `config.yaml` under `trips:`:
+
+```yaml
+- name: Vancouver to Kochi
+  code: T1                    # report folder: "T1 Vancouver - Kochi (Round)"
+  from_name: Vancouver
+  to_name: Kochi
+  origin: [YVR]               # airport codes; a list is allowed, e.g. [YVR, SEA]
+  destination: [COK]
+  trip_type: round_trip       # or one_way
+  depart_window: {start: 2026-11-23, end: 2026-12-14}
+  return_window: {start: 2027-01-01, end: 2027-01-14}   # round trips only
 ```
 
-## Going live (GitHub Actions, free)
+To add another trip, copy the block and give it the next code (`T2`, `T3`, …).
 
-1. **Edit `config.yaml`.** Set your route, date window, nights and filters. See
-   [docs/CONFIGURATION.md](docs/CONFIGURATION.md).
-2. **Pick a data source** and add its key as a repo secret (*Settings →
-   Secrets and variables → Actions*). See [docs/PROVIDERS.md](docs/PROVIDERS.md).
-   - Default setup: `duffel` searches the window (`DUFFEL_ACCESS_TOKEN`) and
-     `serpapi` re-prices the cheapest dates on Google Flights
-     (`SERPAPI_API_KEY`).
-   - A `duffel_test_` token gives sandbox fares only. Use a live token for
-     real prices.
-3. **Pick where the report goes** and add its secrets:
-   - Telegram needs `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`
-   - Email needs `SMTP_USERNAME`, `SMTP_PASSWORD` (a Gmail App Password) and
-     optionally `REPORT_EMAIL_TO`
-   - The GitHub job summary is always on and needs no setup.
-4. **Run it once by hand.** Go to *Actions → Daily flight search → Run
-   workflow*. After that it runs daily at 11:30 UTC.
+## Run it now
 
-Daily reports land in **`Report/`** on `main`, one folder per trip, e.g.
-`Report/T1 Vancouver - Kochi (Round)/2026-10-22.md` (plus `latest.md`).
-The history database (`tracker.db`) lives on the **`data`** branch.
+Go to **Actions → Daily flight search → Run workflow**. The report appears in `Report/` a few minutes later.
 
-## Commands
+## Good to know
 
-| Command | What it does |
-|---|---|
-| `plan` | Shows the search plan and the API calls per day and per month |
-| `run` | Search + report (single machine) |
-| `search --shard i/n` | Searches one shard of the trips (used by parallel jobs) |
-| `merge A.db B.db` | Merges shard databases into the main database |
-| `report [--no-notify]` | Builds and sends the report for `--date` (default today) |
-| `probe` | One live search per provider, to check the API keys |
-| `history [--trip NAME]` | Daily cheapest fare per trip |
-| `prune --keep-days N` | Deletes old offers but keeps each day's cheapest forever |
+- **Search budget:** with `budget: auto`, the bot spreads your remaining monthly SerpApi searches evenly over the days left in the month.
+- **Report size:** `top_n` in `config.yaml` sets how many options each report lists. Each option with return details costs 1 extra search (`return_details`).
+- **Prices** are for all passengers, round trip, in `currency` (CAD).
 
-Global flags: `--config`, `--db`, `--date YYYY-MM-DD`, `-v`.
-
-## Documentation
-
-- [PROJECT.md](PROJECT.md): goals, design decisions, roadmap
-- [PROGRESS.md](PROGRESS.md): current status and next steps (read this first when resuming)
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): modules, data flow, database schema, parallelism
-- [docs/CONFIGURATION.md](docs/CONFIGURATION.md): every config key
-- [docs/PROVIDERS.md](docs/PROVIDERS.md): data sources, costs, and adding a new one
-- [docs/OPERATIONS.md](docs/OPERATIONS.md): secrets, the daily workflow, the data branch, troubleshooting
-
-## License
-
-MIT
+More detail is in [`docs/`](docs/): configuration, providers, operations and architecture.

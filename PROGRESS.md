@@ -5,7 +5,7 @@
 
 _Last updated: 2026-10-21_
 
-## Status: v0.4 — T1 Vancouver ⇄ Kochi with real dates (out Nov 23–Dec 14, back Jan 1–14), SerpApi, auto budget
+## Status: v0.5 — live on main. T1 Vancouver ⇄ Kochi runs daily: top 5 with return flights
 
 The full pipeline works end to end with the **mock** provider: plan →
 parallel search → filter → SQLite → insights → report → notify. That
@@ -33,15 +33,13 @@ need an API key. See "Waiting on owner" below.
 
 ## Waiting on owner (decisions only they can make)
 
-1. **Merge PR #1**, then run *Actions → Daily flight search → Run workflow* once.
-2. **Report channel.** Reports are committed to `Report/` and shown in the Actions summary. Telegram or email isn't chosen yet.
-3. **Duffel.** Parked: Athul is unsure about the charges.
+1. **Report channel.** Reports are committed to `Report/`. Telegram or email isn't chosen yet.
+2. **Duffel.** Parked.
 
-## Next up (in order)
+## Next up
 
-1. After the first real runs, check that `budget: auto` picked a sensible number (search the logs for `auto budget:`).
-2. Optional: add nearby airports (SEA/BLI → TRV) if Athul wants wider options. Each one multiplies the searches.
-3. Roadmap items in PROJECT.md.
+1. Watch the auto budget: each day uses about (left - 10) / days_left searches, minus 5 for return flights.
+2. Optional: nearby airports (SEA, TRV) if Athul wants them.
 
 ## How to resume quickly
 
@@ -58,3 +56,4 @@ python -m flight_tracker --db /tmp/t.db run --provider mock --no-notify
 - 2026-10-21: Athul chose Duffel for search with SerpApi as the final check, and set a rule: one commit per small chunk of code. Added the verify stage, sandbox handling, probe and the live-keys CI job.
 - 2026-10-21: Athul set the SERPAPI_API_KEY secret, parked Duffel, and gave the route Vancouver ⇄ Kochi (T1). Reports now go to `Report/<code> <from> - <to> (Round|One-Way)/` on main. Added rotate_daily and the 7-day best fares section.
 - 2026-10-22: Athul confirmed the dates (out: last week of Nov or 1st/2nd week of Dec; back: 1st/2nd week of Jan) and asked for no transit limits. Added return_window and budget: auto. There are 308 date pairs; auto budget gives about 23/day for the rest of October and about 8/day in November.
+- 2026-10-24: PR #1 merged; the first live run produced real YVR⇄COK fares (cheapest CAD 3,337, Air India). The repo was renamed to Selective_Flight_Tracker; nothing in the code depends on the name. Removed the stray mock `reports/` (Toronto–London test data). Now: top 5, return flights fetched via SerpApi departure_token, minimal README.

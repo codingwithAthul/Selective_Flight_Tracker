@@ -144,6 +144,7 @@ class FlightOffer:
     booking_url: str = ""
     found_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     also_seen_on: list[str] = field(default_factory=list)  # other providers with the same itinerary
+    extra: dict = field(default_factory=dict)  # provider-specific data, e.g. SerpApi's departure_token
 
     @property
     def total_duration_minutes(self) -> int:

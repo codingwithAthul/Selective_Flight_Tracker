@@ -1,4 +1,4 @@
-# PROJECT — Cheapest Flight Tracker
+# PROJECT — Selective Flight Tracker
 
 > This file holds the project's goals and design. It changes rarely.
 > For "where are we right now", read [PROGRESS.md](PROGRESS.md).

@@ -84,6 +84,10 @@ MIGRATIONS = [
         error TEXT
     );
     """,
+    # v2: provider-specific data per offer (e.g. the token needed to fetch return flights)
+    """
+    ALTER TABLE offers ADD COLUMN extra_json TEXT;
+    """,
 ]
 
 
@@ -179,16 +183,40 @@ class Storage:
                 c.execute(
                     """INSERT INTO offers (id, run_id, search_id, run_date, trip_name, provider, origin, destination,
                        depart_date, return_date, price, currency, stops, duration_minutes, airlines, outbound_json,
-                       inbound_json, booking_url, fingerprint, also_seen_on, found_at)
-                       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                       inbound_json, booking_url, fingerprint, also_seen_on, found_at, extra_json)
+                       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                     (_id(), run_id, search_id, run_date.isoformat(), query.trip_name, o.provider, query.origin,
                      query.destination, query.depart_date.isoformat(),
                      query.return_date.isoformat() if query.return_date else None,
                      o.price, o.currency, o.max_stops, o.total_duration_minutes, ", ".join(o.airlines),
                      json.dumps(o.outbound.to_dict()), json.dumps(o.inbound.to_dict()) if o.inbound else None,
-                     o.booking_url, o.fingerprint(), ",".join(o.also_seen_on), o.found_at.isoformat()),
+                     o.booking_url, o.fingerprint(), ",".join(o.also_seen_on), o.found_at.isoformat(),
+                     json.dumps(o.extra) if o.extra else None),
                 )
         return search_id
+
+    def offers_missing_return(self, trip_name: str, run_date: date, limit: int) -> list[sqlite3.Row]:
+        """Today's cheapest round-trip offers (one per itinerary) that still lack return-flight details."""
+        return self.conn.execute(
+            """SELECT * FROM offers WHERE id IN (
+                   SELECT id FROM (
+                       SELECT id, fingerprint, price,
+                              ROW_NUMBER() OVER (PARTITION BY fingerprint ORDER BY price) AS rn
+                       FROM offers WHERE trip_name=? AND run_date=? AND return_date IS NOT NULL)
+                   WHERE rn = 1 ORDER BY price LIMIT ?)
+               AND inbound_json IS NULL AND extra_json IS NOT NULL
+               ORDER BY price""",
+            (trip_name, run_date.isoformat(), limit),
+        ).fetchall()
+
+    def set_return(self, offer_id: str, inbound: Leg, price: float) -> None:
+        """Attach return-flight details; the price becomes the full round trip with that return."""
+        with self.tx() as c:
+            c.execute(
+                """UPDATE offers SET inbound_json=?, price=?, duration_minutes=COALESCE(duration_minutes,0)+?,
+                   stops=MAX(stops, ?) WHERE id=?""",
+                (json.dumps(inbound.to_dict()), price, inbound.duration_minutes or 0, inbound.stops, offer_id),
+            )
 
     def record_notification(self, run_date: date, channel: str, error: Optional[str]) -> None:
         with self.tx() as c:

@@ -83,9 +83,9 @@ class SerpApiProvider(Provider):
             params["return_date"] = q.return_date.isoformat()
         return params
 
-    def search(self, query: SearchQuery) -> list[FlightOffer]:
+    def _get(self, params: dict) -> dict:
         try:
-            resp = self.session.get(ENDPOINT, params=self.build_params(query), timeout=self.timeout)
+            resp = self.session.get(ENDPOINT, params=params, timeout=self.timeout)
         except requests.RequestException as e:
             raise TransientProviderError(f"serpapi: network error: {e}") from e
         if resp.status_code == 429 or resp.status_code >= 500:
@@ -97,19 +97,31 @@ class SerpApiProvider(Provider):
         if resp.status_code >= 400 or data.get("error"):
             msg = str(data.get("error") or f"HTTP {resp.status_code}")
             if any(h in msg.lower() for h in NO_RESULTS_HINTS):
-                return []
+                return {}
             raise ProviderError(f"serpapi: {msg}")
-        return self.parse(query, data)
+        return data
 
-    def parse(self, query: SearchQuery, data: dict) -> list[FlightOffer]:
-        url = (data.get("search_metadata") or {}).get("google_flights_url", "")
-        currency = (data.get("search_parameters") or {}).get("currency", query.currency)
-        offers = []
+    def search(self, query: SearchQuery) -> list[FlightOffer]:
+        return self.parse(query, self._get(self.build_params(query)))
+
+    def fetch_return(self, query: SearchQuery, departure_token: str) -> list[tuple[Leg, float]]:
+        """Return flights for a chosen outbound (one extra search credit).
+
+        Prices here are the full round-trip price with that return flight, cheapest first.
+        """
+        params = self.build_params(query)
+        params["departure_token"] = departure_token
+        options = [(leg, float(item["price"])) for item, leg in self._items(self._get(params))
+                   if item.get("price") is not None]
+        return sorted(options, key=lambda o: o[1])
+
+    @staticmethod
+    def _items(data: dict):
+        """(raw item, Leg) for every itinerary in a Google Flights response."""
         for group in ("best_flights", "other_flights"):
             for item in data.get(group) or []:
-                price = item.get("price")
                 flights = item.get("flights") or []
-                if price is None or not flights:
+                if not flights:
                     continue
                 segments = []
                 for f in flights:
@@ -124,13 +136,24 @@ class SerpApiProvider(Provider):
                         carrier_name=f.get("airline", ""),
                         flight_number=fn.split(" ")[-1] if fn else "",
                     ))
-                offers.append(FlightOffer(
-                    provider=self.name,
-                    query=query,
-                    price=float(price),
-                    currency=currency,
-                    outbound=Leg(segments=segments, duration_minutes=item.get("total_duration")),
-                    inbound=None,
-                    booking_url=url,
-                ))
+                yield item, Leg(segments=segments, duration_minutes=item.get("total_duration"))
+
+    def parse(self, query: SearchQuery, data: dict) -> list[FlightOffer]:
+        url = (data.get("search_metadata") or {}).get("google_flights_url", "")
+        currency = (data.get("search_parameters") or {}).get("currency", query.currency)
+        offers = []
+        for item, leg in self._items(data):
+            if item.get("price") is None:
+                continue
+            token = item.get("departure_token")
+            offers.append(FlightOffer(
+                provider=self.name,
+                query=query,
+                price=float(item["price"]),
+                currency=currency,
+                outbound=leg,
+                inbound=None,
+                booking_url=url,
+                extra={"departure_token": token} if token and query.is_round_trip else {},
+            ))
         return offers

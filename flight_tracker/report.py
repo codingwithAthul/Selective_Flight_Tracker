@@ -130,30 +130,23 @@ def render_markdown(summaries: list[TripSummary], run_date: date, stats: Optiona
             lines.append("")
         if not s.options:
             continue
-        lines += ["| # | Price | Δ vs prev | Dates | Route | Airlines | Stops | Total time | Via | Book |",
-                  "|---|---|---|---|---|---|---|---|---|---|"]
+        lines += ["| # | Price | Δ vs prev | Dates | Airlines | Stops | Total time | Book |",
+                  "|---|---|---|---|---|---|---|---|"]
         for o in s.options:
-            via = ", ".join(a for leg in (o.outbound, o.inbound) if leg for a, _ in leg.layovers) or "—"
-            link = f"[link]({o.booking_url})" if o.booking_url else "—"
+            link = f"[book]({o.booking_url})" if o.booking_url else "—"
             lines.append(
                 f"| {o.rank} | **{fmt_money(o.price, o.currency)}** | {fmt_change(o.change_vs_prev, o.currency)} | "
-                f"{option_dates(o)} | {o.origin}→{o.destination} | {o.airlines} | {o.stops} | "
-                f"{fmt_minutes(o.duration_minutes)} | {via} | {link} |"
+                f"{option_dates(o)} | {o.airlines} | {o.stops} | {fmt_minutes(o.duration_minutes)} | {link} |"
             )
         lines.append("")
-        lines.append("<details><summary>Flight details for the top 5</summary>")
-        lines.append("")
-        for o in s.options[:5]:
-            lines.append(f"**#{o.rank} {fmt_money(o.price, o.currency)}** — {option_dates(o)} "
-                         f"(via {', '.join(o.providers)})")
+        for o in s.options:
+            lines.append(f"**#{o.rank} {fmt_money(o.price, o.currency)}** — {option_dates(o)}")
             lines.append(f"- Out: {leg_line(o.outbound)}")
             if o.inbound:
                 lines.append(f"- Back: {leg_line(o.inbound)}")
             elif o.return_date:
-                lines.append("- Back: details on the booking page")
+                lines.append("- Back: not fetched today (see booking link)")
             lines.append("")
-        lines.append("</details>")
-        lines.append("")
         if s.best_value:
             b = s.best_value
             lines += [f"**Best value (price + time):** {fmt_money(b.price, b.currency)} · {option_dates(b)} · "
@@ -255,8 +248,9 @@ def render_telegram(summaries: list[TripSummary], run_date: date, top: int = 5) 
             if o.booking_url:
                 price = f"<a href=\"{e(o.booking_url)}\">{price}</a>"
             lines.append(f"{o.rank}. {price} ({e(fmt_change(o.change_vs_prev, o.currency))}) · {e(option_dates(o))}")
-            lines.append(f"    {e(o.airlines)} · {o.stops} stop(s) · {fmt_minutes(o.duration_minutes)} · "
-                         f"{e(o.origin)}→{e(o.destination)}")
+            lines.append(f"    Out: {e(leg_line(o.outbound))}")
+            if o.inbound:
+                lines.append(f"    Back: {e(leg_line(o.inbound))}")
         if s.best_value:
             b = s.best_value
             lines.append(f"\n⭐ Best value: {e(fmt_money(b.price, b.currency))} · {e(option_dates(b))} · "

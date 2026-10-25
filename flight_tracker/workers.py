@@ -12,6 +12,7 @@ complete, which keeps the database single-writer and safe.
 
 from __future__ import annotations
 
+import json
 import logging
 import random
 import time
@@ -48,6 +49,7 @@ class TripStats:
     offers_found: int = 0
     offers_kept: int = 0
     verified: int = 0
+    returns_fetched: int = 0
     rejected: dict[str, int] = field(default_factory=dict)
 
 
@@ -155,7 +157,39 @@ class SearchEngine:
                 cheapest.update(self._execute(trip, phase2, "refine", stats, pool))
             log.info("trip %s: %d sample + %d refine searches", trip.name, len(phase1), len(phase2))
         self._verify(trip, cheapest, stats, pool)
+        self._fetch_returns(trip, stats, pool)
         return stats
+
+    def _fetch_returns(self, trip: Trip, stats: TripStats, pool: ThreadPoolExecutor) -> None:
+        """Round trips: some providers (SerpApi) price the round trip but only describe the outbound.
+        For the day's top `return_details` offers, make one extra call each to get the return flights."""
+        n = trip.strategy.return_details
+        if not n or not trip.is_round_trip:
+            return
+        by_name = {p.name: p for p in [*self.providers, *([self.verifier] if self.verifier else [])]
+                   if hasattr(p, "fetch_return")}
+        rows = [r for r in self.storage.offers_missing_return(trip.name, self.run_date, n) if r["provider"] in by_name]
+        futures = {}
+        for r in rows:
+            token = json.loads(r["extra_json"]).get("departure_token")
+            if not token:
+                continue
+            q = SearchQuery(trip_name=trip.name, origin=r["origin"], destination=r["destination"],
+                            depart_date=date.fromisoformat(r["depart_date"]),
+                            return_date=date.fromisoformat(r["return_date"]), adults=trip.adults,
+                            cabin=trip.cabin, currency=r["currency"], max_stops=trip.filters.max_stops)
+            futures[pool.submit(by_name[r["provider"]].fetch_return, q, token)] = r
+        for fut in as_completed(futures):
+            r = futures[fut]
+            try:
+                options = fut.result()
+            except ProviderError as e:
+                log.warning("return details for %s %s failed: %s", r["depart_date"], r["return_date"], e)
+                continue
+            if options:
+                leg, price = options[0]
+                self.storage.set_return(r["id"], leg, price)
+                stats.returns_fetched += 1
 
     def _verify(self, trip: Trip, cheapest: dict[str, tuple[SearchQuery, float]], stats: TripStats,
                 pool: ThreadPoolExecutor) -> None:

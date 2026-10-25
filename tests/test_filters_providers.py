@@ -113,3 +113,28 @@ def test_duffel_test_token_is_tagged_as_sandbox(monkeypatch):
     assert p.sandbox and p.label == "duffel-test"
     monkeypatch.setenv("DUFFEL_ACCESS_TOKEN", "duffel_live_abc")
     assert not DuffelProvider().sandbox
+
+
+def test_serpapi_keeps_departure_token_and_fetches_returns(monkeypatch):
+    p = SerpApiProvider()
+    p.api_key = "k"
+    flight = lambda o, d, t1, t2: {"departure_airport": {"id": o, "time": t1},
+                                   "arrival_airport": {"id": d, "time": t2},
+                                   "airline": "Air India", "flight_number": "AI 186"}
+    out = {"best_flights": [{"price": 3337, "total_duration": 1865, "departure_token": "TOK",
+                             "flights": [flight("YVR", "DEL", "2026-11-25 19:45", "2026-11-27 01:00")]}]}
+    o = p.parse(Q, out)[0]
+    assert o.extra == {"departure_token": "TOK"}
+    seen = {}
+
+    def fake_get(params):
+        seen.update(params)
+        return {"other_flights": [
+            {"price": 3400, "total_duration": 1500, "flights": [flight("COK", "YVR", "2026-12-10 03:00", "2026-12-10 20:00")]},
+            {"price": 3337, "total_duration": 1700, "flights": [flight("COK", "YVR", "2026-12-10 05:00", "2026-12-10 23:00")]},
+        ]}
+    monkeypatch.setattr(p, "_get", fake_get)
+    options = p.fetch_return(Q, "TOK")
+    assert seen["departure_token"] == "TOK"
+    assert [price for _, price in options] == [3337, 3400]
+    assert options[0][0].segments[0].origin == "COK"

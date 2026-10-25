@@ -104,7 +104,9 @@ def apply_auto_budgets(cfg: Config, providers: list[Provider], run_date: date) -
     per_day = max(0, left - reserve) // days_left_in_month(run_date)
     share = per_day // len(auto)
     for t in auto:
-        t.strategy.budget = max(1, share) if left > reserve else 0
+        # Return-flight lookups come out of the same quota.
+        extra = t.strategy.return_details if t.is_round_trip else 0
+        t.strategy.budget = max(1, share - extra) if left > reserve else 0
     log.info("auto budget: %d searches left, %d days left in month -> %d per trip today",
              left, days_left_in_month(run_date), share)
 
@@ -181,7 +183,7 @@ def cmd_search(cfg: Config, args, storage: Storage, run_date: date) -> int:
                       for k, v in stats.items())
     storage.finish_run(run_id, planned, ok, failed, notes)
     for name, s in stats.items():
-        print(f"[{name}] searches ok={s.ok} cached={s.skipped_cached} failed={s.failed} verified={s.verified} "
+        print(f"[{name}] searches ok={s.ok} cached={s.skipped_cached} failed={s.failed} verified={s.verified} returns={s.returns_fetched} "
               f"offers kept {s.offers_kept}/{s.offers_found} rejected={s.rejected}")
     return 1 if planned and ok == 0 else 0
 
@@ -192,7 +194,10 @@ def cmd_report(cfg: Config, args, storage: Storage, run_date: date) -> int:
     errors = storage.search_errors(run_date)
     md = render_markdown(summaries, run_date, stats, errors)
     html_body = render_html(summaries, run_date, stats)
-    paths = write_report_files(args.output_dir or cfg.report.output_dir, run_date, summaries)
+    out_dir = args.output_dir or cfg.report.output_dir
+    if getattr(args, "provider", None) and not args.output_dir:
+        out_dir = "reports"  # test runs (e.g. --provider mock) never overwrite the real Report/ folder
+    paths = write_report_files(out_dir, run_date, summaries)
     log.info("report written: %s", ", ".join(map(str, paths)))
 
     cheapest = [s for s in summaries if s.today_min is not None]

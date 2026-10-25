@@ -65,6 +65,7 @@ class Strategy:
     refine_radius_days: int = 2
     keep_offers_per_search: int = 5  # how many cheapest offers to store per search
     rotate_daily: bool = False  # shift the sample grid each day (good for small budgets)
+    return_details: int = 0  # fetch return-flight details for this many of the day's cheapest (1 extra search each)
 
 
 @dataclass

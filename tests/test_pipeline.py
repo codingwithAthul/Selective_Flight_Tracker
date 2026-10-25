@@ -234,3 +234,37 @@ def test_auto_budget_spreads_quota_over_month():
     cfg = parse_config(base_raw(strategy={"budget": "auto"}), today=TODAY)
     apply_auto_budgets(cfg, [MockProvider(today=TODAY)], TODAY)  # no quota info: keep fallback
     assert cfg.trips[0].strategy.budget == 7
+
+
+class OutboundOnly(MockProvider):
+    """Like SerpApi: round-trip price, outbound details only, plus a token for the return call."""
+    name = "outbound-only"
+
+    def search(self, query):
+        offers = super().search(query)
+        for o in offers:
+            o.inbound = None
+            o.extra = {"departure_token": f"tok-{o.fingerprint()}"}
+        return offers
+
+    def fetch_return(self, query, token):
+        full = MockProvider.search(self, query)[0]
+        return [(full.inbound, 999.0)]
+
+
+def test_return_details_fetched_for_top_offers(storage):
+    cfg = parse_config(base_raw(strategy={"budget": 10, "return_details": 3}), today=TODAY)
+    run_id = storage.start_run(TODAY)
+    s = SearchEngine(cfg, [OutboundOnly(today=TODAY)], storage, run_id, TODAY, base_delay=0).run(cfg.trips)["T1"]
+    assert s.returns_fetched == 3
+    rows = storage.conn.execute("SELECT price FROM offers WHERE inbound_json IS NOT NULL").fetchall()
+    assert len(rows) == 3 and all(r["price"] == 999.0 for r in rows)
+    summary = build_all(storage, cfg, TODAY)[0]
+    assert sum(o.inbound is not None for o in summary.options) == 3
+
+
+def test_auto_budget_leaves_room_for_return_details():
+    from flight_tracker.cli import apply_auto_budgets
+    cfg = parse_config(base_raw(strategy={"budget": "auto", "return_details": 5}), today=TODAY)
+    apply_auto_budgets(cfg, [Quota(210, today=TODAY)], date(2026, 10, 22))
+    assert cfg.trips[0].strategy.budget == 20 - 5
