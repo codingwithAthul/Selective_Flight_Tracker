@@ -186,10 +186,12 @@ class SearchEngine:
             except ProviderError as e:
                 log.warning("return details for %s %s failed: %s", r["depart_date"], r["return_date"], e)
                 continue
-            if options:
-                leg, price = options[0]
-                self.storage.set_return(r["id"], leg, price)
-                stats.returns_fetched += 1
+            if not options:
+                log.warning("return details for %s %s: Google listed no return flights", r["depart_date"], r["return_date"])
+                continue
+            leg, price = options[0]
+            self.storage.set_return(r["id"], leg, price)
+            stats.returns_fetched += 1
 
     def _verify(self, trip: Trip, cheapest: dict[str, tuple[SearchQuery, float]], stats: TripStats,
                 pool: ThreadPoolExecutor) -> None:
