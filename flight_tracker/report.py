@@ -145,7 +145,7 @@ def render_markdown(summaries: list[TripSummary], run_date: date, stats: Optiona
             if o.inbound:
                 lines.append(f"- Back: {leg_line(o.inbound)}")
             elif o.return_date:
-                lines.append("- Back: not fetched today (see booking link)")
+                lines.append("- Back: not listed by Google today (open the booking link)")
             lines.append("")
         if s.best_value:
             b = s.best_value
