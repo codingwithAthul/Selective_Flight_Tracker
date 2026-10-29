@@ -1,42 +1,42 @@
-# ✈️ Daily flight report — Wed 28 Oct 2026
+# ✈️ Daily flight report — Thu 29 Oct 2026
 
 ## Vancouver to Kochi
 
 _YVR → COK · return 01 Jan – 14 Jan 2027 · departing 23 Nov – 14 Dec 2026 · 1 adult, economy_
 
-Cheapest today: **CAD 3,186** · ▼ 5.0% vs 2026-10-27 · all-time low before today CAD 2,462 · 30-day trend `▆▁█▆▅`
-
-> 🔔 **Cheapest fare dropped 5.0% since 2026-10-27**
+Cheapest today: **CAD 3,564** · ▲ 11.9% vs 2026-10-28 · all-time low before today CAD 2,462 · 30-day trend `▆▁▇▆▅█`
 
 | # | Price | Δ vs prev | Dates | Airlines | Stops | Total time | Book |
 |---|---|---|---|---|---|---|---|
-| 1 | **CAD 3,186** | ▼ 169 | Sat 28 Nov 2026 → Fri 01 Jan 2027 (34 nights) | WestJet, Etihad | 2 | 48h00 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTExLTI4agcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDFqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
-| 2 | **CAD 3,488** | new | Thu 03 Dec 2026 → Mon 04 Jan 2027 (32 nights) | Air India, Air India Express | 2 | 38h25 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTAzagcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDRqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
-| 3 | **CAD 3,561** | ▼ 22 | Tue 01 Dec 2026 → Fri 01 Jan 2027 (31 nights) | Air Canada, Emirates | 2 | 57h59 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTAxagcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDFqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
-| 4 | **CAD 3,627** | ▲ 44 | Tue 01 Dec 2026 → Fri 01 Jan 2027 (31 nights) | Air Canada, Emirates | 2 | 71h04 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTAxagcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDFqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
-| 5 | **CAD 3,661** | ▲ 100 | Wed 02 Dec 2026 → Fri 01 Jan 2027 (30 nights) | Air Canada, Emirates | 2 | 60h34 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTAyagcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDFqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
+| 1 | **CAD 3,564** | new | Sat 05 Dec 2026 → Fri 01 Jan 2027 (27 nights) | Porter Airlines, Qatar Airways | 2 | 67h50 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTA1agcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDFqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
+| 2 | **CAD 3,564** | new | Sat 05 Dec 2026 → Fri 01 Jan 2027 (27 nights) | Air Canada, Qatar Airways | 2 | 67h10 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTA1agcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDFqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
+| 3 | **CAD 3,625** | new | Wed 09 Dec 2026 → Fri 01 Jan 2027 (23 nights) | Air Canada, Qatar Airways | 2 | 73h59 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTA5agcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDFqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
+| 4 | **CAD 3,704** | new | Mon 07 Dec 2026 → Mon 04 Jan 2027 (28 nights) | Air France, IndiGo | 2 | 56h20 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTA3agcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDRqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
+| 5 | **CAD 3,708** | new | Tue 08 Dec 2026 → Fri 01 Jan 2027 (24 nights) | Porter Airlines, Qatar Airways | 2 | 28h30 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTA4agcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDFqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
 
-**#1 CAD 3,186** — Sat 28 Nov 2026 → Fri 01 Jan 2027 (34 nights)
-- Out: YVR 07:45 → COK 19:50 (+1d) · 2 stops via YYC (2h45), AUH (1h30) · 23h35 · WS106 EY30 EY334
-- Back: COK 22:05 → YVR 10:00 (+1d) · 2 stops via AUH (1h40), YYC (2h15) · 24h25 · EY335 EY29 WS103
+**#1 CAD 3,564** — Sat 05 Dec 2026 → Fri 01 Jan 2027 (27 nights)
+- Out: YVR 09:35 → COK 02:35 (+2d) · 2 stops via YUL (4h38), DOH (2h45) · 28h30 · PD372 QR764 QR516
+- Back: COK 15:00 → YVR 17:50 (+1d) · 2 stops via DOH (14h45), SEA (4h09) · 39h20 · 6E1323 QR719 AS2221
 
-**#2 CAD 3,488** — Thu 03 Dec 2026 → Mon 04 Jan 2027 (32 nights)
-- Out: YVR 19:45 → COK 22:40 (+2d) · 2 stops via VIE (1h30), DEL (14h10) · 38h25 · AI186 AI186 IX2237
+**#2 CAD 3,564** — Sat 05 Dec 2026 → Fri 01 Jan 2027 (27 nights)
+- Out: YVR 10:15 → COK 02:35 (+2d) · 2 stops via YUL (4h06), DOH (2h45) · 27h50 · AC304 QR764 QR516
+- Back: COK 15:00 → YVR 17:50 (+1d) · 2 stops via DOH (14h45), SEA (4h09) · 39h20 · 6E1323 QR719 AS2221
+
+**#3 CAD 3,625** — Wed 09 Dec 2026 → Fri 01 Jan 2027 (23 nights)
+- Out: YVR 09:10 → COK 02:35 (+2d) · 2 stops via IAH (2h57), DOH (3h10) · 28h55 · AC1292 QR714 QR516
+- Back: COK 15:10 → YVR 23:44 (+1d) · 2 stops via DOH (14h35), SEA (9h56) · 45h04 · 6E1323 QR719 AS1600
+
+**#4 CAD 3,704** — Mon 07 Dec 2026 → Mon 04 Jan 2027 (28 nights)
+- Out: YVR 17:35 → COK 08:10 (+2d) · 2 stops via CDG (1h20), BLR (4h15) · 26h05 · AF375 AF194 6E6445
+- Back: COK 21:40 → YVR 15:25 (+1d) · 2 stops via DEL (4h20), CDG (2h50) · 30h15 · 6E2127 AF215 AF374
+
+**#5 CAD 3,708** — Tue 08 Dec 2026 → Fri 01 Jan 2027 (24 nights)
+- Out: YVR 09:35 → COK 02:35 (+2d) · 2 stops via YUL (4h38), DOH (2h45) · 28h30 · PD372 QR764 QR516
 - Back: not fetched today (see booking link)
 
-**#3 CAD 3,561** — Tue 01 Dec 2026 → Fri 01 Jan 2027 (31 nights)
-- Out: YVR 09:35 → COK 03:00 (+2d) · 2 stops via LAX (4h10), DXB (1h50) · 28h55 · AC550 EK216 EK532
-- Back: COK 04:35 → YVR 21:09 · 2 stops via DXB (2h50), SEA (5h30) · 29h04 · EK533 EK229 AC8811
+**Best value (price + time):** CAD 3,708 · Tue 08 Dec 2026 → Fri 01 Jan 2027 (24 nights) · Porter Airlines, Qatar Airways · 2 stop(s) · 28h30
 
-**#4 CAD 3,627** — Tue 01 Dec 2026 → Fri 01 Jan 2027 (31 nights)
-- Out: YVR 20:30 → COK 03:00 (+3d) · 2 stops via LAX (17h19), DXB (1h50) · 42h00 · AC558 EK216 EK532
-- Back: COK 04:35 → YVR 21:09 · 2 stops via DXB (2h50), SEA (5h30) · 29h04 · EK533 EK229 AC8811
-
-**#5 CAD 3,661** — Wed 02 Dec 2026 → Fri 01 Jan 2027 (30 nights)
-- Out: YVR 09:35 → COK 03:00 (+2d) · 2 stops via LAX (4h10), DXB (1h50) · 28h55 · AC550 EK216 EK532
-- Back: COK 04:35 → YVR 23:44 · 2 stops via DXB (2h50), SEA (8h01) · 31h39 · EK533 EK229 AS1600
-
-**Cheapest dates today:** 28 Nov→01 Jan CAD 3,186 · 03 Dec→04 Jan CAD 3,488 · 01 Dec→01 Jan CAD 3,561 · 02 Dec→01 Jan CAD 3,661 · 29 Nov→01 Jan CAD 3,845 · 29 Nov→03 Jan CAD 3,870 · 03 Dec→03 Jan CAD 3,889
+**Cheapest dates today:** 05 Dec→01 Jan CAD 3,564 · 09 Dec→01 Jan CAD 3,625 · 07 Dec→04 Jan CAD 3,704 · 08 Dec→01 Jan CAD 3,708 · 06 Dec→01 Jan CAD 3,835 · 26 Nov→01 Jan CAD 3,870 · 06 Dec→02 Jan CAD 4,015
 
 **Best fares seen in the last 7 days** (latest price for each date pair):
 
