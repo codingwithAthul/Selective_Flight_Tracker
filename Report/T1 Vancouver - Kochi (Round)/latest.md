@@ -1,40 +1,50 @@
-# ✈️ Daily flight report — Sat 31 Oct 2026
+# ✈️ Daily flight report — Sun 01 Nov 2026
 
 ## Vancouver to Kochi
 
 _YVR → COK · return 01 Jan – 14 Jan 2027 · departing 23 Nov – 14 Dec 2026 · 1 adult, economy_
 
-Cheapest today: **CAD 2,485** · ▼ 1.6% vs 2026-10-30 · all-time low before today CAD 2,462 · 30-day trend `▆▁▇▆▅█▁▁`
+Cheapest today: **CAD 3,889** · ▲ 56.5% vs 2026-10-31 · all-time low before today CAD 2,462 · 30-day trend `▅▁▆▅▄▆▁▁█`
 
 | # | Price | Δ vs prev | Dates | Airlines | Stops | Total time | Book |
 |---|---|---|---|---|---|---|---|
-| 1 | **CAD 2,485** | new | Mon 14 Dec 2026 → Wed 06 Jan 2027 (23 nights) | Air India, Air India Express | 2 | 60h40 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTE0agcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDZqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
-| 2 | **CAD 2,523** | new | Mon 23 Nov 2026 → Tue 05 Jan 2027 (43 nights) | Air India, Air India Express | 2 | 25h05 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTExLTIzagcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDVqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
-| 3 | **CAD 2,523** | ▼ 113 | Thu 26 Nov 2026 → Wed 06 Jan 2027 (41 nights) | Air India, Air India Express | 2 | 62h40 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTExLTI2agcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDZqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
-| 4 | **CAD 2,523** | new | Sun 29 Nov 2026 → Tue 05 Jan 2027 (37 nights) | Air India, Air India Express | 2 | 25h05 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTExLTI5agcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDVqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
-| 5 | **CAD 2,523** | ▼ 2 | Tue 24 Nov 2026 → Tue 05 Jan 2027 (42 nights) | Air India, Air India Express | 2 | 62h40 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTExLTI0agcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDVqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
+| 1 | **CAD 3,889** | new | Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights) | Porter Airlines, Qatar Airways | 2 | 58h40 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTEwagcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDVqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
+| 2 | **CAD 3,889** | new | Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights) | Air Canada, Qatar Airways | 2 | 58h00 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTEwagcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDVqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
+| 3 | **CAD 4,273** | new | Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights) | Air France, IndiGo | 2 | 55h45 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTEwagcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDVqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
+| 4 | **CAD 4,502** | new | Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights) | Air Canada, Qatar Airways | 2 | 55h50 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTEwagcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDVqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
+| 5 | **CAD 4,779** | new | Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights) | Air Canada, British Airways, IndiGo | 2 | 30h05 | [book](https://www.google.com/travel/flights?hl=en&gl=ca&curr=CAD&tfs=CBwQAhoeEgoyMDI2LTEyLTEwagcIARIDWVZScgcIARIDQ09LGh4SCjIwMjctMDEtMDVqBwgBEgNDT0tyBwgBEgNZVlJAAUgBcAGYAQE&tfu=EgIIAQ) |
 
-**#1 CAD 2,485** — Mon 14 Dec 2026 → Wed 06 Jan 2027 (23 nights)
-- Out: YVR 19:45 → COK 22:40 (+2d) · 2 stops via VIE (1h30), DEL (14h10) · 38h25 · AI186 AI186 IX2237
-- Back: COK 21:25 → YVR 07:10 (+1d) · 1 stop via DEL (3h55) · 22h15 · AI2558 AI185
+**#1 CAD 3,889** — Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights)
+- Out: YVR 09:35 → COK 02:35 (+2d) · 2 stops via YUL (4h38), DOH (2h45) · 28h30 · PD372 QR764 QR516
+- Back: COK 04:05 → YVR 21:45 · 2 stops via DOH (2h25), YUL (4h10) · 30h10 · QR517 QR763 AC311
 
-**#2 CAD 2,523** — Mon 23 Nov 2026 → Tue 05 Jan 2027 (43 nights)
-- Out: YVR 19:45 → COK 09:20 (+2d) · 2 stops via CCU (1h15), DEL (2h15) · 25h05 · AI186 AI186 IX2233
+**#2 CAD 3,889** — Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights)
+- Out: YVR 10:15 → COK 02:35 (+2d) · 2 stops via YUL (4h06), DOH (2h45) · 27h50 · AC304 QR764 QR516
+- Back: COK 04:05 → YVR 21:45 · 2 stops via DOH (2h25), YUL (4h10) · 30h10 · QR517 QR763 AC311
+
+**#3 CAD 4,273** — Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights)
+- Out: YVR 17:35 → COK 08:10 (+2d) · 2 stops via CDG (1h20), BLR (4h15) · 26h05 · AF375 AF194 6E6445
+- Back: COK 21:40 → YVR 14:50 (+1d) · 2 stops via DEL (2h30), AMS (4h45) · 29h40 · 6E2127 KL872 KL681
+
+**#4 CAD 4,502** — Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights)
+- Out: YVR 12:25 → COK 02:35 (+2d) · 2 stops via SFO (1h09), DOH (2h30) · 25h40 · AC564 QR738 QR516
+- Back: COK 04:05 → YVR 21:45 · 2 stops via DOH (2h25), YUL (4h10) · 30h10 · QR517 QR763 AC311
+
+**#5 CAD 4,779** — Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights)
+- Out: YVR 19:20 → COK 13:55 (+2d) · 2 stops via LHR (2h00), DOH (7h05) · 30h05 · AC860 BA127 6E1324
 - Back: not fetched today (see booking link)
 
-**#3 CAD 2,523** — Thu 26 Nov 2026 → Wed 06 Jan 2027 (41 nights)
-- Out: YVR 19:45 → COK 09:20 (+2d) · 2 stops via CCU (1h15), DEL (2h15) · 25h05 · AI186 AI186 IX2233
-- Back: COK 06:05 → YVR 07:10 (+1d) · 1 stop via DEL (19h15) · 37h35 · AI2638 AI185
+**Best value (price + time):** CAD 3,889 · Thu 10 Dec 2026 → Tue 05 Jan 2027 (26 nights) · Air Canada, Qatar Airways · 2 stop(s) · 58h00
 
-**#4 CAD 2,523** — Sun 29 Nov 2026 → Tue 05 Jan 2027 (37 nights)
-- Out: YVR 19:45 → COK 09:20 (+2d) · 2 stops via CCU (1h15), DEL (2h15) · 25h05 · AI186 AI186 IX2233
-- Back: not fetched today (see booking link)
+**Cheapest dates today:** 10 Dec→05 Jan CAD 3,889
 
-**#5 CAD 2,523** — Tue 24 Nov 2026 → Tue 05 Jan 2027 (42 nights)
-- Out: YVR 19:45 → COK 09:20 (+2d) · 2 stops via CCU (1h15), DEL (2h15) · 25h05 · AI186 AI186 IX2233
-- Back: COK 06:05 → YVR 07:10 (+1d) · 1 stop via DEL (19h15) · 37h35 · AI2638 AI185
+**Best fares seen in the last 7 days** (latest price for each date pair):
 
-**Best value (price + time):** CAD 2,523 · Mon 23 Nov 2026 → Tue 05 Jan 2027 (43 nights) · Air India, Air India Express · 2 stop(s) · 25h05
-
-**Cheapest dates today:** 14 Dec→06 Jan CAD 2,485 · 23 Nov→05 Jan CAD 2,523 · 26 Nov→06 Jan CAD 2,523 · 29 Nov→05 Jan CAD 2,523 · 24 Nov→05 Jan CAD 2,523 · 13 Dec→05 Jan CAD 2,547 · 29 Nov→06 Jan CAD 2,684
+| Dates | Route | Price | Last checked |
+|---|---|---|---|
+| Mon 14 Dec → Tue 05 Jan | YVR→COK | CAD 2,485 | 2026-10-31 |
+| Mon 14 Dec → Wed 06 Jan | YVR→COK | CAD 2,485 | 2026-10-31 |
+| Mon 23 Nov → Tue 05 Jan | YVR→COK | CAD 2,523 | 2026-10-31 |
+| Mon 23 Nov → Wed 06 Jan | YVR→COK | CAD 2,523 | 2026-10-31 |
+| Tue 24 Nov → Tue 05 Jan | YVR→COK | CAD 2,523 | 2026-10-31 |
 
