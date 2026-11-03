@@ -263,6 +263,21 @@ def test_return_details_fetched_for_top_offers(storage):
     assert sum(o.inbound is not None for o in summary.options) == 3
 
 
+class NoReturns(OutboundOnly):
+    def fetch_return(self, query, token):
+        return []
+
+
+def test_empty_return_list_is_skipped_and_noted(storage):
+    cfg = parse_config(base_raw(strategy={"budget": 10, "return_details": 3}), today=TODAY)
+    run_id = storage.start_run(TODAY)
+    s = SearchEngine(cfg, [NoReturns(today=TODAY)], storage, run_id, TODAY, base_delay=0).run(cfg.trips)["T1"]
+    assert s.returns_fetched == 0
+    summary = build_all(storage, cfg, TODAY)[0]
+    assert all(o.inbound is None for o in summary.options)
+    assert "not listed by Google today" in render_markdown([summary], TODAY)
+
+
 def test_auto_budget_leaves_room_for_return_details():
     from flight_tracker.cli import apply_auto_budgets
     cfg = parse_config(base_raw(strategy={"budget": "auto", "return_details": 5}), today=TODAY)
