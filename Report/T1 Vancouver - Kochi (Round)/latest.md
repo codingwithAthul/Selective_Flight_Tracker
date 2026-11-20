@@ -1,4 +1,4 @@
-# ✈️ Daily flight report — Thu 19 Nov 2026
+# ✈️ Daily flight report — Fri 20 Nov 2026
 
 ## Vancouver to Kochi
 
